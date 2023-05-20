@@ -33,6 +33,10 @@ resource "google_compute_instance" "gcp_vm" {
     ssh-keys = "${var.ssh_user}:${var.ssh_key}"
   }
 
+  labels = {
+    name = "${var.gcp_vm_name}-${random_string.random.result}"
+  }
+
   tags = ["${var.gcp_vm_name}-${random_string.random.result}"]
 
 }
