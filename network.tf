@@ -11,8 +11,9 @@ resource "google_compute_subnetwork" "subnetwork" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name    = "${var.gcp_vm_name}-${random_string.random.result}-firewall"
-  network = google_compute_network.vpc_network.name
+  name        = "${var.gcp_vm_name}-${random_string.random.result}-firewall"
+  network     = google_compute_network.vpc_network.name
+  description = "Firewall rule to allow SSH from local machine"
 
   allow {
     protocol = "tcp"
@@ -21,6 +22,20 @@ resource "google_compute_firewall" "ssh" {
 
   allow {
     protocol = "icmp"
+  }
+
+  target_tags   = ["${var.gcp_vm_name}-${random_string.random.result}"]
+  source_ranges = ["0.0.0.0/0"]
+}
+
+resource "google_compute_firewall" "http_https" {
+  name        = "${var.gcp_vm_name}-${random_string.random.result}-web"
+  network     = google_compute_network.vpc_network.name
+  description = "Firewall rule to allow HTTP and HTTPS"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
   }
 
   target_tags   = ["${var.gcp_vm_name}-${random_string.random.result}"]
