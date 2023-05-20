@@ -2,7 +2,7 @@
 
 ```bash
 path          = "./file.json"
-project       = "djelajah"
+project       = "your-project"
 region        = "us-central1"
 zone          = "us-central1-f"
 os_image      = "ubuntu-os-cloud/ubuntu-2204-lts-arm64"
