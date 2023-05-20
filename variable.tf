@@ -47,3 +47,8 @@ variable "ssh_user" {
   type    = string
   default = "null"
 }
+
+variable "ip_cidr_range" {
+  type    = string
+  default = "null"
+}
