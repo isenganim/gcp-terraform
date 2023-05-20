@@ -12,3 +12,22 @@ disk_size   = 30
 ssh_key     = ""
 ssh_user    = "ubuntu"
 ```
+
+# Find zone list
+
+```bash
+$ gcloud compute zones list
+```
+
+# Find OS list
+
+```bash
+$ gcloud compute images list
+$ gcloud beta compute images list
+```
+
+# Find machine type
+
+```bash
+$ gcloud compute machine-types list --zones=asia-southeast1-b
+```
