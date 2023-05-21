@@ -12,6 +12,7 @@ disk_size     = 30
 ssh_key       = ""
 ssh_user      = "ubuntu"
 ip_cidr_range = "10.130.0.0/20"
+userdata      = "basic.sh"
 ```
 
 # Find zone list
