@@ -4,10 +4,12 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_subnetwork" "subnetwork" {
-  name          = "${var.gcp_vm_name}-${random_string.random.result}-subnetwork"
-  region        = var.region
-  network       = google_compute_network.vpc_network.name
-  ip_cidr_range = var.ip_cidr_range
+  name             = "${var.gcp_vm_name}-${random_string.random.result}-subnetwork"
+  region           = var.region
+  network          = google_compute_network.vpc_network.name
+  ip_cidr_range    = var.ip_cidr_range
+  stack_type       = "IPV4_IPV6"
+  ipv6_access_type = "EXTERNAL"
 }
 
 resource "google_compute_firewall" "ssh" {

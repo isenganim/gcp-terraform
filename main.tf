@@ -32,6 +32,10 @@ resource "google_compute_instance" "gcp_vm" {
     access_config {
       nat_ip = google_compute_address.staticip.address
     }
+
+    ipv6_access_config {
+      network_tier = "PREMIUM"
+    }
   }
 
   metadata = {
