@@ -52,3 +52,8 @@ variable "ip_cidr_range" {
   type    = string
   default = "null"
 }
+
+variable "userdata" {
+  type    = string
+  default = "null"
+}

@@ -1,3 +1,7 @@
+data "template_file" "user_data" {
+  template = file(var.userdata)
+}
+
 resource "random_string" "random" {
   length  = 5
   lower   = true
@@ -10,9 +14,10 @@ resource "google_compute_address" "staticip" {
 }
 
 resource "google_compute_instance" "gcp_vm" {
-  name         = "${var.gcp_vm_name}-${random_string.random.result}"
-  zone         = var.zone
-  machine_type = var.gcp_vm_type
+  name                    = "${var.gcp_vm_name}-${random_string.random.result}"
+  zone                    = var.zone
+  machine_type            = var.gcp_vm_type
+  metadata_startup_script = data.template_file.user_data.rendered
 
   boot_disk {
     initialize_params {
